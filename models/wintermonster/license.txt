@@ -1,0 +1,11 @@
+Model Information:
+* title:	Winter Сold
+* source:	https://sketchfab.com/3d-models/winter-old-435e474661b94f27a0b028c519a59a1d
+* author:	Gregory Shcherbakov (https://sketchfab.com/gostarts)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Winter Сold" (https://sketchfab.com/3d-models/winter-old-435e474661b94f27a0b028c519a59a1d) by Gregory Shcherbakov (https://sketchfab.com/gostarts) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

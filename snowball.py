@@ -16,19 +16,25 @@ class Snowball(Entity):
         self.position += self.direction * self.speed * time.dt # Move the snowball in its current direction with the specified speed
         self.direction.y += (-0.3 * time.dt) 
 
-        # Check if snowball is out of range of the world
-        dist = distance(Vec3(0,0,0),self.position)
+        # Check if snowball is out range of player
+        dist = distance(GLOBALS.PLAYER.position, self.position)
         if dist > 64:
             destroy(self)  # Remove the snowball from the scene
 
         #if hits ground, destroy or leave??
-        hit_info = self.intersects()
-        if hit_info.entity == GLOBALS.GAME.ground:
-            self.collision = False
-            self.speed = 0
-            self.ignore = True
-            self.Y = 0
-            invoke(self.destroy_snowball, delay=5)
+        try:
+            hit_info = self.intersects()
+            if hit_info.entity == GLOBALS.GAME.ground:
+                self.collision = False
+                self.speed = 0
+                self.ignore = True
+                self.y = 0
+                invoke(self.destroy_snowball, delay=5)
+            elif hit_info.entity.name != 'snowman':
+                GLOBALS.GAME.create_explosion(self.position)
+        except:
+            pass #sometimes an entity no longer exists
+        
         return
     
     def destroy_snowball(self):

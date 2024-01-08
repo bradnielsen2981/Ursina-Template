@@ -1,8 +1,8 @@
 import sys, time, math
 from ursina import *    
 from ursina.shaders import lit_with_shadows_shader
-from enemy import Enemy
-from wolf import Wolf
+from snowman import Snowman
+from bat import Bat
 from player import Player
 from particle_emitter import ParticleEmitter
 import global_vars as GLOBALS
@@ -24,12 +24,12 @@ class Game(Entity):
         self.load_text = Text(text="Loading", origin=Vec2(0, 0), scale=3); self.load_text.enabled = False
 
         self.editor_camera = EditorCamera(enabled=False, ignore_paused=True)
-        self.ground = Entity(model='plane', collider='box', scale=128, texture='grass_tintable', texture_scale=(8,8))# self.ground = Entity(model=Terrain('loddefjord_height_map', skip=8), collider='mesh', texture='loddefjord_color', scale=100, scale_y=50) #self.ground.model.save('loddefjord_terrain')
         self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.25, parent=self)
         self.sun = DirectionalLight()
         self.sun.look_at(Vec3(1,-1,-1))
-        self.sky = Sky()
-
+        self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
+        #self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a Skybox texture 
+        
         self.spawntime = 2 #number of seconds to spawn enemy
         return
     
@@ -66,12 +66,21 @@ class Game(Entity):
     def loading(self):
         print("LOADING"); self.state = "loading"
         if not self.loaded:
-            wall = Entity(model='cube', collider="box", scale=(10,10,2), position=(0,0,5), texture="stonewall.png", texture_scale=(1, 1, 2))
-            tree = Entity(model='models/tree/tree.gltf', position=(0,8,5), scale=0.5);
-            hut = Entity(model='models/hut/hut.gltf', position=(0,0,20), scale=(2));
-            wolf = Wolf(position=(20,0,20))
-            #use duplicate(original_entity) to make more as opposed to loading the entity again
+            self.ground = Entity(model='plane', collider='box', scale=128, texture='grass_tintable', texture_scale=(8,8))
+            wall = Entity(model='cube', collider="box", origin=(-0.5, -0.5, 0), scale=(8,8,2), position=(20,0,0), texture="textures/stonewall/stonewall.png", texture_scale=(1, 1, 2))
+            for i in range(17):
+                w = duplicate(wall)
+                w.x = -64 + i*8
+                w.z = 64
 
+            tree = Entity(model='models/tree/tree.gltf', position=(0,8,5), scale=0.5);
+            hut = Entity(model='models/hut/hut.gltf', position=(0,0.1,20), scale=(2));
+            #hut.collider = BoxCollider(hut, center=(0,0.1,20), size=(6,10,8)) 
+            hut.collider = BoxCollider(hut, center=(0,0,0), size=(6,10,8)) 
+            #colliderbox = Entity(parent=hut, model="cube", color=color.red, alpha=0.5, scale=(6,10,8)) #visual the collision box
+            
+            bat = Bat(position=(0,5,3))
+            #use duplicate(original_entity) to make more as opposed to loading the entity again
             invoke(self.start_game, delay=2) 
             self.loaded = True
         return
@@ -114,10 +123,10 @@ class Game(Entity):
         if self.state != 'game':
             return
         if len(GLOBALS.ENEMYLIST) < 12:
-            position = Vec3(random.randint(-64,64),0,random.randint(-64,64))
+            position = Vec3(random.randint(-60,60),0,random.randint(-60,60))
             while distance_xz(GLOBALS.PLAYER.position, position) < 10: #make sure positions arent too close to the player
-                position = Vec3(random.randint(0,127),0,random.randint(0,127)) 
-            e = Enemy(position, (0,0,0))            
+                position = Vec3(random.randint(-60,60),0,random.randint(-60,60))
+            e = Snowman(position, (0,0,0))            
             GLOBALS.ENEMYLIST.append(e)
 
         invoke(self.spawn_enemy, delay=2)

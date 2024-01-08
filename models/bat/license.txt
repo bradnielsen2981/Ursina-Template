@@ -1,0 +1,11 @@
+Model Information:
+* title:	Vampire Bat
+* source:	https://sketchfab.com/3d-models/vampire-bat-806dcba0959944f880272512b841a019
+* author:	Aiden Vang (https://sketchfab.com/vang807)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Vampire Bat" (https://sketchfab.com/3d-models/vampire-bat-806dcba0959944f880272512b841a019) by Aiden Vang (https://sketchfab.com/vang807) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
