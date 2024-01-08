@@ -1,0 +1,11 @@
+Model Information:
+* title:	Viking Hut
+* source:	https://sketchfab.com/3d-models/viking-hut-88b918e66b3f4cbb89a2463adb18b8d8
+* author:	Vladi (https://sketchfab.com/vladivpg)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Viking Hut" (https://sketchfab.com/3d-models/viking-hut-88b918e66b3f4cbb89a2463adb18b8d8) by Vladi (https://sketchfab.com/vladivpg) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
