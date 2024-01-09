@@ -27,7 +27,6 @@ class Game(Entity):
         #camera
         self.editor_camera = EditorCamera(enabled=False, ignore_paused=True)
 
-        self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
         self.sun = DirectionalLight()
         self.sun.look_at(Vec3(1,-1,-1))
         self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
@@ -48,6 +47,7 @@ class Game(Entity):
     def loading(self):
         print("LOADING"); self.state = "loading"
         if not self.loaded:
+            self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
             wall = Entity(model='cube', collider="box", origin=(-0.5, -0.5, 0), scale=(8,8,2), position=(-64,0,64), texture="textures/stonewall/stonewall.png", texture_scale=(1, 1, 2))
             for i in range(15):
                 w = duplicate(wall)
@@ -78,7 +78,7 @@ class Game(Entity):
             destroy(enemy)
         GLOBALS.ENEMYLIST = []
         destroy(GLOBALS.PLAYER)
-        self.music.stop(destroy=True)
+        self.music.stop()
         self.end_text.enabled = True
         invoke(self.menu, delay=2) #return to menu in two seconds
         return
@@ -115,7 +115,7 @@ class Game(Entity):
     
     # Create an explosion - would like to know how i can make a proper snow storm..?
     def create_explosion(self, position):
-        p = ParticleEmitter(position)
+        p = ParticleEmitter(position=position, file='particles/snowsplash.ptf')
         return
     
     # Spawn an enemy every second

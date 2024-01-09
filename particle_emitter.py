@@ -4,7 +4,7 @@ from direct.particles.ParticleEffect import ParticleEffect
 from panda3d.core import Filename
 from direct.particles.ForceGroup import ForceGroup
 import time
-
+ 
 class ParticleEmitter(Entity):
     
     def __init__(self, position=Vec3(0,0,0), file='particles/snowsplash.ptf', life=1, deathtime=2, parent=None):
