@@ -18,17 +18,21 @@ class Game(Entity):
         self.state = "ready"
         self.loaded = False
 
-        self.start_text = Text(text="Press Space to start!", origin=Vec2(0, 0), scale=3)
-        self.end_text = Text(text="You are dead!", origin=Vec2(0, 0), scale=3); self.end_text.enabled = False
-        self.score_text = Text(text="0", y=0.4, x=-0.6, origin=Vec2(0,0),scale=3); self.score_text.enabled=True; self.score = 0
-        self.load_text = Text(text="Loading", origin=Vec2(0, 0), scale=3); self.load_text.enabled = False
+        #texts
+        self.start_text = Text(text="Press Space to start!", origin=Vec2(0, 0), scale=3, color=color.black)
+        self.end_text = Text(text="You are dead!", origin=Vec2(0, 0), scale=3, color=color.red); self.end_text.enabled = False
+        self.score_text = Text(text="0", y=0.4, x=-0.6, origin=Vec2(0,0),scale=3, color=color.black); self.score_text.enabled=True; self.score = 0
+        self.load_text = Text(text="Loading", origin=Vec2(0, 0), scale=3, color=color.violet); self.load_text.enabled = False
 
+        #camera
         self.editor_camera = EditorCamera(enabled=False, ignore_paused=True)
-        self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.25, parent=self)
+
+        self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
         self.sun = DirectionalLight()
         self.sun.look_at(Vec3(1,-1,-1))
         self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
-        #self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a Skybox texture 
+        #self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a SKYBOX texture and you may need to flip
+        self.ground = Entity(model='plane', collider='box', scale=128, texture='grass_tintable', texture_scale=(8,8))
         
         self.spawntime = 2 #number of seconds to spawn enemy
         return
@@ -38,6 +42,23 @@ class Game(Entity):
         print("MENU"); self.state = "menu"
         self.end_text.enabled = False
         self.start_text.enabled = True 
+        return
+    
+    # Load the game assets and level 
+    def loading(self):
+        print("LOADING"); self.state = "loading"
+        if not self.loaded:
+            wall = Entity(model='cube', collider="box", origin=(-0.5, -0.5, 0), scale=(8,8,2), position=(-64,0,64), texture="textures/stonewall/stonewall.png", texture_scale=(1, 1, 2))
+            for i in range(15):
+                w = duplicate(wall)
+                w.x = -56 + i*8
+                w.z = 64
+            tree = Entity(model='models/tree/tree.gltf', position=(0,8,5), scale=0.5);
+            hut = Entity(model='models/hut/hut.gltf', position=(0,0.1,20), scale=(2));
+            hut.collider = BoxCollider(hut, center=(0,0,0), size=(6,10,8)) 
+            self.loaded = True
+            #use duplicate(original_entity) to make more as opposed to loading the entity again
+        invoke(self.start_game, delay=2) 
         return
     
     # Start the game
@@ -62,29 +83,6 @@ class Game(Entity):
         invoke(self.menu, delay=2) #return to menu in two seconds
         return
     
-    # Load the game assets and level
-    def loading(self):
-        print("LOADING"); self.state = "loading"
-        if not self.loaded:
-            self.ground = Entity(model='plane', collider='box', scale=128, texture='grass_tintable', texture_scale=(8,8))
-            wall = Entity(model='cube', collider="box", origin=(-0.5, -0.5, 0), scale=(8,8,2), position=(20,0,0), texture="textures/stonewall/stonewall.png", texture_scale=(1, 1, 2))
-            for i in range(17):
-                w = duplicate(wall)
-                w.x = -64 + i*8
-                w.z = 64
-
-            tree = Entity(model='models/tree/tree.gltf', position=(0,8,5), scale=0.5);
-            hut = Entity(model='models/hut/hut.gltf', position=(0,0.1,20), scale=(2));
-            #hut.collider = BoxCollider(hut, center=(0,0.1,20), size=(6,10,8)) 
-            hut.collider = BoxCollider(hut, center=(0,0,0), size=(6,10,8)) 
-            #colliderbox = Entity(parent=hut, model="cube", color=color.red, alpha=0.5, scale=(6,10,8)) #visual the collision box
-            
-            bat = Bat(position=(0,5,3))
-            #use duplicate(original_entity) to make more as opposed to loading the entity again
-            invoke(self.start_game, delay=2) 
-            self.loaded = True
-        return
-    
     # Update the score
     def update_score(self, add):
         self.score += add
@@ -101,6 +99,8 @@ class Game(Entity):
             mouse.locked = not self.editor_camera.enabled
             self.editor_camera.position = GLOBALS.PLAYER.position
             application.paused = self.editor_camera.enabled
+        elif key == 'escape':
+            self.exit_application()
 
         if self.state == "menu":
             if key == 'space':
@@ -113,7 +113,7 @@ class Game(Entity):
     def update(self):
         return
     
-    # Create an explosion
+    # Create an explosion - would like to know how i can make a proper snow storm..?
     def create_explosion(self, position):
         p = ParticleEmitter(position)
         return
@@ -122,7 +122,7 @@ class Game(Entity):
     def spawn_enemy(self):
         if self.state != 'game':
             return
-        if len(GLOBALS.ENEMYLIST) < 12:
+        if len(GLOBALS.ENEMYLIST) < 10:
             position = Vec3(random.randint(-60,60),0,random.randint(-60,60))
             while distance_xz(GLOBALS.PLAYER.position, position) < 10: #make sure positions arent too close to the player
                 position = Vec3(random.randint(-60,60),0,random.randint(-60,60))

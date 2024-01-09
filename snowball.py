@@ -6,19 +6,17 @@ from ursina import *
 class Snowball(Entity):
     
     def __init__(self, position=Vec3(0,0,0), speed=15, direction=Vec3(0,0,0)):
-        super().__init__(model='sphere', color=color.white, scale=0.5, position=position)
+        super().__init__(model='sphere', color=color.white, scale=0.5, position=position, collider='sphere')
         self.direction = direction
         self.speed = speed  # Set the desired speed (adjust as needed)
-        self.collider = SphereCollider(self, center=Vec3(0,0,0), radius=0.5) 
         return
         
     def update(self):
         self.position += self.direction * self.speed * time.dt # Move the snowball in its current direction with the specified speed
         self.direction.y += (-0.3 * time.dt) 
 
-        # Check if snowball is out range of player
-        dist = distance(GLOBALS.PLAYER.position, self.position)
-        if dist > 64:
+        # Check if snowball is out range of world
+        if self.position.y < 0:
             destroy(self)  # Remove the snowball from the scene
 
         #if hits ground, destroy or leave??
@@ -28,10 +26,12 @@ class Snowball(Entity):
                 self.collision = False
                 self.speed = 0
                 self.ignore = True
-                self.y = 0
+                self.y = 0.2
                 invoke(self.destroy_snowball, delay=5)
+
             elif hit_info.entity.name != 'snowman':
                 GLOBALS.GAME.create_explosion(self.position)
+                destroy(self)
         except:
             pass #sometimes an entity no longer exists
         
