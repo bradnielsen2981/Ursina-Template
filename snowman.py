@@ -13,16 +13,11 @@ class Snowman(Entity):
 
         self.model.setScale((1,1,-1))
 
-        #self.max_hp = 100; self.hp = self.max_hp
-        #self.health_bar = Entity(parent=self, y=1.2, model='cube', color=color.red, scale=Vec3(1,0.1,0.1), position=Vec3(0,4,0.5))
-        
         self.sound = Audio('sounds/snowballhit.mp3', loop=False, autoplay=False, volume=1, range=10, parent=self) #makes it so sound is only audible within 10 range of entity
         self.avoidance = False
         return
 
     def update(self):
-
-        #self.health_bar.alpha = max(0, self.health_bar.alpha - time.dt)
 
         #looks for anything it intersects with enemy except ground
         try:
@@ -31,18 +26,14 @@ class Snowman(Entity):
                 if hit_info.entity.name == 'snowball': #if hit by a snowball  hit_info.entity.name 
                     self.color = color.rgba(1.0, 0.0, 0.0, 0.5)
                     invoke(self.restorecolor, delay=0.5) #try to avoid other enemies
-                    GLOBALS.GAME.create_explosion(hit_info.entity.position + 2*self.forward)
-                    self.sound.play()
+
+                    #GLOBALS.GAME.create_explosion(hit_info.entity.position + 2*self.forward)
                     
-                    #GLOBALS.GAME.update_score(1)
-                    #self.update_hp(-30)
+                    self.sound.play()
 
                     destroy(hit_info.entity) #destroy the snowball
 
                 else: #if hits anything else with a collision box 
-                    if hit_info.entity.name == 'player': #if hit the player
-                        hit_info.entity.hit() #tell the player they have been hit
-
                     self.avoidance = True
                     invoke(self.end_avoidance, delay=3)
                     self.look_at_2d(self.position + hit_info.normal, 'y') #bounce off
@@ -71,18 +62,4 @@ class Snowman(Entity):
     
     def restorecolor(self):  
         self.color = color.white 
-        return
-
-    def update_hp(self, value):
-    #    self.hp += value
-    #    if self.hp <= 0:
-    #        try:
-    #            GLOBALS.ENEMYLIST.remove(self)
-    #            destroy(self)
-    #        except:
-    #            pass #there is a change the snowman will no longer exist
-    #        return
-
-    #    self.health_bar.world_scale_x = self.hp / self.max_hp * 1.5
-    #    self.health_bar.alpha = 1
         return

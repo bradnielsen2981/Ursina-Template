@@ -67,8 +67,6 @@ class Game(Entity):
         self.load_text.enabled = False
         self.music.play()
 
-        #self.score = 0
-
         GLOBALS.PLAYER = Player(position=(0,1,0)) #Create the GLOBALS.PLAYER - Player is a First Person Controller
         self.spawn_enemy()
         return
@@ -85,11 +83,6 @@ class Game(Entity):
         invoke(self.menu, delay=2) #return to menu in two seconds
         return
     
-    # Update the score
-    def update_score(self, add):
-    #    self.score += add
-    #    self.score_text.text = str(self.score)
-        return
     
     # Handle input when it occurs
     def input(self, key):
@@ -116,9 +109,9 @@ class Game(Entity):
         return
     
     # Create an explosion - would like to know how i can make a proper snow storm..?
-    def create_explosion(self, position):
-        p = ParticleEmitter(position=position, file='particles/snowsplash.ptf')
-        return
+    #def create_explosion(self, position):
+    #    p = ParticleEmitter(position=position, file='particles/snowsplash.ptf')
+    #    return
     
     # Spawn an enemy every second
     def spawn_enemy(self):

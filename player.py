@@ -50,17 +50,4 @@ class Player(FirstPersonController):
         super().input(key) #The player controller needs input
         return
 
-    #The player is hit
-    def hit(self):
-        #if self.health > 0:
-        #    self.health -= 20
-        #    if self.health <= 0:
-        #        self.enabled = False
-        #        self.healthbar.scale_x = 0.01
-        #        GLOBALS.GAME.end_game()
-        #    else:
-        #        self.healthbar.scale_x = self.health/100 * self.healthbar_bg.scale_x
-         #   self.healthbar.x = self.healthbar_bg.x - (self.healthbar_bg.scale_x - self.healthbar.scale_x)/2
-        return
-
     #Dont edit the collisions of the player controller as collisions have already been set up 
