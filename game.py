@@ -21,22 +21,18 @@ class Game(Entity):
         #self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
 
         #texts
-        #self.start_text = Text(text="Press Space to start!", origin=Vec2(0, 0), scale=3, color=color.black)
-        #self.end_text = Text(text="You are dead!", origin=Vec2(0, 0), scale=3, color=color.red)
-        #self.end_text.enabled = False
-        #self.score_text = Text(text="0", y=0.4, x=-0.6, origin=Vec2(0,0),scale=3, color=color.black)
-        #self.score_text.enabled=True
-        #self.score = 0
-        #self.load_text = Text(text="Loading", origin=Vec2(0, 0), scale=3, color=color.violet)
-        #self.load_text.enabled = False
+        self.start_text = Text(text="Press Space to start!", origin=Vec2(0, 0), scale=3, color=color.black)
+        self.end_text = Text(text="You are dead!", origin=Vec2(0, 0), scale=3, color=color.red); self.end_text.enabled = False
+        self.score_text = Text(text="0", y=0.4, x=-0.6, origin=Vec2(0,0),scale=3, color=color.black); self.score_text.enabled=True; self.score = 0
+        self.load_text = Text(text="Loading", origin=Vec2(0, 0), scale=3, color=color.violet); self.load_text.enabled = False
 
         #camera
         self.editor_camera = EditorCamera(enabled=False, ignore_paused=True)
 
         self.sun = DirectionalLight()
         self.sun.look_at(Vec3(1,-1,-1))
-        self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
-        #self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a SKYBOX texture and you may need to flip
+        #self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
+        self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a SKYBOX texture and you may need to flip
         self.ground = Entity(model='plane', collider='box', scale=128, texture='grass_tintable', texture_scale=(8,8))
         return
     
@@ -57,7 +53,7 @@ class Game(Entity):
     def start_game(self):
         print("START GAME"); self.state = "game"
         self.load_text.enabled = False
-        #self.music.play()
+        self.music.play()
         GLOBALS.PLAYER = Player(position=(0,1,0)) #Create the GLOBALS.PLAYER - Player is a First Person Controller
         return
     
@@ -65,7 +61,7 @@ class Game(Entity):
     def end_game(self):
         print("END GAME"); self.state = "end"
         destroy(GLOBALS.PLAYER)
-        #self.music.stop()
+        self.music.stop()
         self.end_text.enabled = True
         invoke(self.menu, delay=2) #return to menu in two seconds
         return
