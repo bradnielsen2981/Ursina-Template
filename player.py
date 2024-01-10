@@ -24,9 +24,9 @@ class Player(FirstPersonController):
         self.camera_pivot.y = 3.2   # Move the camera a little higher  
 
         #create a healthbar 
-        self.healthbar_bg = Entity(parent=camera.ui,model="quad",color=color.rgb(255, 0, 0), position=(0, 0.45), scale=(0.8, 0.04))
-        self.healthbar = Entity(parent=camera.ui,model="quad",color=color.rgb(0, 255, 0), position=(0, 0.45), scale=(0.8, 0.04))
-        self.health = 100
+        #self.healthbar_bg = Entity(parent=camera.ui,model="quad",color=color.rgb(255, 0, 0), position=(0, 0.45), scale=(0.8, 0.04))
+        #self.healthbar = Entity(parent=camera.ui,model="quad",color=color.rgb(0, 255, 0), position=(0, 0.45), scale=(0.8, 0.04))
+        #self.health = 100
         return
 
     #players update function called every frame
@@ -52,15 +52,15 @@ class Player(FirstPersonController):
 
     #The player is hit
     def hit(self):
-        if self.health > 0:
-            self.health -= 20
-            if self.health <= 0:
-                self.enabled = False
-                self.healthbar.scale_x = 0.01
-                GLOBALS.GAME.end_game()
-            else:
-                self.healthbar.scale_x = self.health/100 * self.healthbar_bg.scale_x
-            self.healthbar.x = self.healthbar_bg.x - (self.healthbar_bg.scale_x - self.healthbar.scale_x)/2
+        #if self.health > 0:
+        #    self.health -= 20
+        #    if self.health <= 0:
+        #        self.enabled = False
+        #        self.healthbar.scale_x = 0.01
+        #        GLOBALS.GAME.end_game()
+        #    else:
+        #        self.healthbar.scale_x = self.health/100 * self.healthbar_bg.scale_x
+         #   self.healthbar.x = self.healthbar_bg.x - (self.healthbar_bg.scale_x - self.healthbar.scale_x)/2
         return
 
     #Dont edit the collisions of the player controller as collisions have already been set up 

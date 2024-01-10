@@ -66,7 +66,9 @@ class Game(Entity):
         print("START GAME"); self.state = "game"
         self.load_text.enabled = False
         self.music.play()
-        self.score = 0
+
+        #self.score = 0
+
         GLOBALS.PLAYER = Player(position=(0,1,0)) #Create the GLOBALS.PLAYER - Player is a First Person Controller
         self.spawn_enemy()
         return
@@ -85,8 +87,8 @@ class Game(Entity):
     
     # Update the score
     def update_score(self, add):
-        self.score += add
-        self.score_text.text = str(self.score)
+    #    self.score += add
+    #    self.score_text.text = str(self.score)
         return
     
     # Handle input when it occurs
