@@ -44,7 +44,6 @@ class Game(Entity):
     # Load the game assets and level 
     def loading(self):
         print("LOADING"); self.state = "loading"
-        #wall = Entity(model='cube', collider="box", origin=(-0.5, -0.5, 0), scale=(8,8,2), position=(-64,0,64), texture="textures/stonewall/stonewall.png", texture_scale=(1, 1, 2))
         invoke(self.start_game, delay=2) 
         return
     
