@@ -32,10 +32,6 @@ class Player(FirstPersonController):
 
     #player inputs function called every frame WASD are already inputs for the FirstPersonController
     def input(self, key):
-        #if key == 'left mouse down':
-        #    snowball_direction = camera.forward + Vec3(0,0.2,0) #makes it above the vector
-        #    snowball_position = self.position + self.forward + Vec3(0,2,0)
-        #    snowball = Snowball(position=snowball_position, speed=15, direction=snowball_direction)
         super().input(key) #The player controller needs input
         return
 

@@ -16,7 +16,7 @@ class Game(Entity):
     def __init__(self):
         super().__init__(position=Vec3(0,0,0), ignore_paused=True)
         self.state = "ready"
-        self.loaded = False
+        #self.loaded = False
 
         #texts
         self.start_text = Text(text="Press Space to start!", origin=Vec2(0, 0), scale=3, color=color.black)
@@ -44,17 +44,17 @@ class Game(Entity):
     # Load the game assets and level 
     def loading(self):
         print("LOADING"); self.state = "loading"
-        if not self.loaded:
-            self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
-            wall = Entity(model='cube', collider="box", origin=(-0.5, -0.5, 0), scale=(8,8,2), position=(-64,0,64), texture="textures/stonewall/stonewall.png", texture_scale=(1, 1, 2))
-            for i in range(15):
-                w = duplicate(wall)
-                w.x = -56 + i*8
-                w.z = 64
-            tree = Entity(model='models/tree/tree.gltf', position=(0,8,5), scale=0.5);
-            hut = Entity(model='models/hut/hut.gltf', position=(0,0.1,20), scale=(2));
-            hut.collider = BoxCollider(hut, center=(0,0,0), size=(6,10,8)) 
-            self.loaded = True
+        #if not self.loaded:
+        #    self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
+        #    wall = Entity(model='cube', collider="box", origin=(-0.5, -0.5, 0), scale=(8,8,2), position=(-64,0,64), texture="textures/stonewall/stonewall.png", texture_scale=(1, 1, 2))
+        #    for i in range(15):
+        #        w = duplicate(wall)
+        #        w.x = -56 + i*8
+        #        w.z = 64
+        #    tree = Entity(model='models/tree/tree.gltf', position=(0,8,5), scale=0.5);
+        #    hut = Entity(model='models/hut/hut.gltf', position=(0,0.1,20), scale=(2));
+        #    hut.collider = BoxCollider(hut, center=(0,0,0), size=(6,10,8)) 
+        #    self.loaded = True
             #use duplicate(original_entity) to make more as opposed to loading the entity again
         invoke(self.start_game, delay=2) 
         return
@@ -63,7 +63,7 @@ class Game(Entity):
     def start_game(self):
         print("START GAME"); self.state = "game"
         self.load_text.enabled = False
-        self.music.play()
+        #self.music.play()
         GLOBALS.PLAYER = Player(position=(0,1,0)) #Create the GLOBALS.PLAYER - Player is a First Person Controller
         return
     
@@ -71,7 +71,7 @@ class Game(Entity):
     def end_game(self):
         print("END GAME"); self.state = "end"
         destroy(GLOBALS.PLAYER)
-        self.music.stop()
+        #self.music.stop()
         self.end_text.enabled = True
         invoke(self.menu, delay=2) #return to menu in two seconds
         return
