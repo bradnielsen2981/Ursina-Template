@@ -44,18 +44,7 @@ class Game(Entity):
     # Load the game assets and level 
     def loading(self):
         print("LOADING"); self.state = "loading"
-        #if not self.loaded:
-        #    self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
-        #    wall = Entity(model='cube', collider="box", origin=(-0.5, -0.5, 0), scale=(8,8,2), position=(-64,0,64), texture="textures/stonewall/stonewall.png", texture_scale=(1, 1, 2))
-        #    for i in range(15):
-        #        w = duplicate(wall)
-        #        w.x = -56 + i*8
-        #        w.z = 64
-        #    tree = Entity(model='models/tree/tree.gltf', position=(0,8,5), scale=0.5);
-        #    hut = Entity(model='models/hut/hut.gltf', position=(0,0.1,20), scale=(2));
-        #    hut.collider = BoxCollider(hut, center=(0,0,0), size=(6,10,8)) 
-        #    self.loaded = True
-            #use duplicate(original_entity) to make more as opposed to loading the entity again
+        #wall = Entity(model='cube', collider="box", origin=(-0.5, -0.5, 0), scale=(8,8,2), position=(-64,0,64), texture="textures/stonewall/stonewall.png", texture_scale=(1, 1, 2))
         invoke(self.start_game, delay=2) 
         return
     
