@@ -18,11 +18,17 @@ class Game(Entity):
         self.state = "ready"
         #self.loaded = False
 
+        #self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
+
         #texts
-        self.start_text = Text(text="Press Space to start!", origin=Vec2(0, 0), scale=3, color=color.black)
-        self.end_text = Text(text="You are dead!", origin=Vec2(0, 0), scale=3, color=color.red); self.end_text.enabled = False
-        self.score_text = Text(text="0", y=0.4, x=-0.6, origin=Vec2(0,0),scale=3, color=color.black); self.score_text.enabled=True; self.score = 0
-        self.load_text = Text(text="Loading", origin=Vec2(0, 0), scale=3, color=color.violet); self.load_text.enabled = False
+        #self.start_text = Text(text="Press Space to start!", origin=Vec2(0, 0), scale=3, color=color.black)
+        #self.end_text = Text(text="You are dead!", origin=Vec2(0, 0), scale=3, color=color.red)
+        #self.end_text.enabled = False
+        #self.score_text = Text(text="0", y=0.4, x=-0.6, origin=Vec2(0,0),scale=3, color=color.black)
+        #self.score_text.enabled=True
+        #self.score = 0
+        #self.load_text = Text(text="Loading", origin=Vec2(0, 0), scale=3, color=color.violet)
+        #self.load_text.enabled = False
 
         #camera
         self.editor_camera = EditorCamera(enabled=False, ignore_paused=True)
