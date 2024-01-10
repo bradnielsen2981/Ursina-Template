@@ -18,6 +18,8 @@ class Game(Entity):
         self.state = "ready"
         #self.loaded = False
 
+        self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
+
         #texts
         self.start_text = Text(text="Press Space to start!", origin=Vec2(0, 0), scale=3, color=color.black)
         self.end_text = Text(text="You are dead!", origin=Vec2(0, 0), scale=3, color=color.red); self.end_text.enabled = False
@@ -29,8 +31,8 @@ class Game(Entity):
 
         self.sun = DirectionalLight()
         self.sun.look_at(Vec3(1,-1,-1))
-        self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
-        #self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a SKYBOX texture and you may need to flip
+        #self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
+        self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a SKYBOX texture and you may need to flip
         self.ground = Entity(model='plane', collider='box', scale=128, texture='grass_tintable', texture_scale=(8,8))
         return
     
