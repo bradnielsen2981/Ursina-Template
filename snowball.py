@@ -20,22 +20,19 @@ class Snowball(Entity):
             destroy(self)  # Remove the snowball from the scene
 
         #if hits ground, destroy or leave??
-        try:
-            hit_info = self.intersects()
-            if hit_info.entity == GLOBALS.GAME.ground:
-                self.collision = False
-                self.speed = 0
-                self.ignore = True
-                self.y = 0.2
-                invoke(self.destroy_snowball, delay=5)
+        #try:
+        #    hit_info = self.intersects()
+        #    if hit_info.entity == GLOBALS.GAME.ground:
+        #        self.collision = False
+        #        self.speed = 0
+        #        self.ignore = True
+        #        self.y = 0.2
+        #        invoke(self.destroy_snowball, delay=5)
 
-            elif hit_info.entity.name != 'snowman':
-
-                #GLOBALS.GAME.create_explosion(self.position)
-                
-                destroy(self)
-        except:
-            pass #sometimes an entity no longer exists
+        #    elif hit_info.entity.name != 'snowman':
+        #        destroy(self)
+        #except:
+        #    pass #sometimes an entity no longer exists
         
         return
     

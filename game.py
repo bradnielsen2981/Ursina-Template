@@ -108,10 +108,6 @@ class Game(Entity):
     def update(self):
         return
     
-    # Create an explosion - would like to know how i can make a proper snow storm..?
-    #def create_explosion(self, position):
-    #    p = ParticleEmitter(position=position, file='particles/snowsplash.ptf')
-    #    return
     
     # Spawn an enemy every second
     def spawn_enemy(self):
