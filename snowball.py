@@ -17,23 +17,7 @@ class Snowball(Entity):
 
         # Check if snowball is out range of world
         if self.position.y < 0:
-            destroy(self)  # Remove the snowball from the scene
-
-        #if hits ground, destroy or leave??
-        #try:
-        #    hit_info = self.intersects()
-        #    if hit_info.entity == GLOBALS.GAME.ground:
-        #        self.collision = False
-        #        self.speed = 0
-        #        self.ignore = True
-        #        self.y = 0.2
-        #        invoke(self.destroy_snowball, delay=5)
-
-        #    elif hit_info.entity.name != 'snowman':
-        #        destroy(self)
-        #except:
-        #    pass #sometimes an entity no longer exists
-        
+            destroy(self)  # Remove the snowball from the scene        
         return
     
     def destroy_snowball(self):
