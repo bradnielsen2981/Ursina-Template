@@ -35,7 +35,7 @@ class Player(FirstPersonController):
         if key == 'left mouse down':
             snowball_direction = camera.forward + Vec3(0,0.2,0) #makes it above the vector
             snowball_position = self.position + self.forward + Vec3(0,2,0)
-            snowball = Snowball(snowball_direction, snowball_position)
+            snowball = Snowball(position=snowball_position, speed=15, direction=snowball_direction)
         super().input(key) #The player controller needs input
         return
 
