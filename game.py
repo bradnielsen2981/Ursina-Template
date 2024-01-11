@@ -87,8 +87,6 @@ class Game(Entity):
     
     # Update the score
     def update_score(self, add):
-    #    self.score += add
-    #    self.score_text.text = str(self.score)
         return
     
     # Handle input when it occurs
