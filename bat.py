@@ -17,8 +17,6 @@ class Bat(Entity):
         #attach Actor
         self.actor.setScale(Vec3(0.02, -0.02, 0.02))
         
-        self.sound = Audio('sounds/snowballhit.mp3', loop=False, autoplay=False, volume=1, range=10, parent=self) #makes it so sound is only audible within 10 range of entity
-        
         self.avoidance = False
         return
     
