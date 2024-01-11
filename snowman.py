@@ -47,11 +47,7 @@ class Snowman(Entity):
                         if GLOBALS.PLAYER.enabled == True:
                             #find the player and move towards the player
                             self.look_at_2d(GLOBALS.PLAYER.position, 'y')
-                            dist = distance_xz(GLOBALS.PLAYER.position, self.position) #get the distance to the player
-                            if dist < 100 and dist > 2:
-                                ray = raycast(self.position + Vec3(0,1,0), self.forward, distance=100, ignore=(self,), debug=False) #use debug = true if you want to see ray tracing
-                                if ray.hit:
-                                    self.position += self.forward * time.dt * self.speed
+                            self.position += self.forward * time.dt * self.speed
         except:
             pass #sometimes a collision will reference an object that no longer exists e.g a snowball
         return
