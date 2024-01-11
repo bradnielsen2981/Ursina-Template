@@ -74,9 +74,6 @@ class Game(Entity):
     # End the game
     def end_game(self):
         print("END GAME"); self.state = "end"
-        # for enemy in GLOBALS.ENEMYLIST: # Destroy all enemies (!!I can't clear the scene because the Game is an Entity)
-        #    destroy(enemy)
-        # GLOBALS.ENEMYLIST = []
         destroy(GLOBALS.PLAYER)
         self.music.stop()
         self.end_text.enabled = True
@@ -108,20 +105,11 @@ class Game(Entity):
     def update(self):
         return
     
-    
     # Spawn an enemy every second
-    #def spawn_enemy(self):
+    def spawn_enemy(self):
     #    if self.state != 'game':
     #        return
-    #    if len(GLOBALS.ENEMYLIST) < 10:
-    #        position = Vec3(random.randint(-60,60),0,random.randint(-60,60))
-    #        while distance_xz(GLOBALS.PLAYER.position, position) < 10: #make sure positions arent too close to the player
-    #            position = Vec3(random.randint(-60,60),0,random.randint(-60,60))
-    #        e = Snowman(position, (0,0,0))            
-    #        GLOBALS.ENEMYLIST.append(e)
-
-    #    invoke(self.spawn_enemy, delay=2)
-    #    return
+        return
     
     # Exit application
     def exit_application(self):
