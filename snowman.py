@@ -26,8 +26,6 @@ class Snowman(Entity):
                 if hit_info.entity.name == 'snowball': #if hit by a snowball  hit_info.entity.name 
                     self.color = color.rgba(1.0, 0.0, 0.0, 0.5)
                     invoke(self.restorecolor, delay=0.5) #try to avoid other enemies
-
-                    #GLOBALS.GAME.create_explosion(hit_info.entity.position + 2*self.forward)
                     
                     self.sound.play()
 

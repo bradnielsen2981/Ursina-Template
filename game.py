@@ -29,8 +29,8 @@ class Game(Entity):
 
         self.sun = DirectionalLight()
         self.sun.look_at(Vec3(1,-1,-1))
-        self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
-        #self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a SKYBOX texture and you may need to flip
+        #self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
+        self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a SKYBOX texture and you may need to flip
         self.ground = Entity(model='plane', collider='box', scale=128, texture='grass_tintable', texture_scale=(8,8))
         
         self.spawntime = 2 #number of seconds to spawn enemy
@@ -107,11 +107,6 @@ class Game(Entity):
     # Update function called every frame - dont see any need for it at present
     def update(self):
         return
-    
-    # Create an explosion - would like to know how i can make a proper snow storm..?
-    #def create_explosion(self, position):
-    #    p = ParticleEmitter(position=position, file='particles/snowsplash.ptf')
-    #    return
     
     # Spawn an enemy every second
     def spawn_enemy(self):

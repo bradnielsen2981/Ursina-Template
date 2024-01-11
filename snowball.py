@@ -29,10 +29,7 @@ class Snowball(Entity):
                 self.y = 0.2
                 invoke(self.destroy_snowball, delay=5)
 
-            elif hit_info.entity.name != 'snowman':
-
-                #GLOBALS.GAME.create_explosion(self.position)
-                
+            elif hit_info.entity.name != 'snowman':        
                 destroy(self)
         except:
             pass #sometimes an entity no longer exists
