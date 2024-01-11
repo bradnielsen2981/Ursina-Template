@@ -16,7 +16,6 @@ class Game(Entity):
     def __init__(self):
         super().__init__(position=Vec3(0,0,0), ignore_paused=True)
         self.state = "ready"
-        #self.loaded = False
 
         self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
 
