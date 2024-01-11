@@ -18,43 +18,18 @@ class Snowman(Entity):
         return
 
     def update(self):
-
-        #looks for anything it intersects with enemy except ground
-        #try:
-        #    hit_info = self.intersects(ignore=(GLOBALS.GAME.ground,), debug=True)  #use debug=True to see collision box
-        #    if hit_info.hit:
-        #        if hit_info.entity.name == 'snowball': #if hit by a snowball  hit_info.entity.name 
-        #            self.color = color.rgba(1.0, 0.0, 0.0, 0.5)
-        #            invoke(self.restorecolor, delay=0.5) #try to avoid other enemies
-
-        #            self.sound.play()
-
-        #            destroy(hit_info.entity) #destroy the snowball
-
-        #        else: #if hits anything else with a collision box 
-        #            self.avoidance = True
-        #            invoke(self.end_avoidance, delay=3)
-        #            self.look_at_2d(self.position + hit_info.normal, 'y') #bounce off
-        #            self.position += self.forward*3
-        #    else:
-        #        if self.avoidance: #avoidance mode is turned on when hitting an obstacle
-        #            self.speed = 3
-        #            self.position += self.forward * time.dt * self.speed
-        #        else:     
+    
         if GLOBALS.PLAYER: #if not avoiding an obstacle move towards the player
             if GLOBALS.PLAYER.enabled == True:
                 #find the player and move towards the player
                 self.look_at_2d(GLOBALS.PLAYER.position, 'y')
                 self.position += self.forward * time.dt * self.speed
-                        
-        #except:
-        #    pass #sometimes a collision will reference an object that no longer exists e.g a snowball
-        #return
+        return
         
     #def end_avoidance(self):
     #    self.avoidance = False
     #    return
     
-    def restorecolor(self):  
-        self.color = color.white 
-        return
+    #def restorecolor(self):  
+    #    self.color = color.white 
+    #    return
