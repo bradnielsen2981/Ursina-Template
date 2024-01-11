@@ -16,7 +16,7 @@ class Game(Entity):
     def __init__(self):
         super().__init__(position=Vec3(0,0,0), ignore_paused=True)
         self.state = "ready"
-        #self.loaded = False
+        self.loaded = False
 
         #texts
         self.start_text = Text(text="Press Space to start!", origin=Vec2(0, 0), scale=3, color=color.black)
@@ -29,8 +29,8 @@ class Game(Entity):
 
         self.sun = DirectionalLight()
         self.sun.look_at(Vec3(1,-1,-1))
-        self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
-        #self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a SKYBOX texture and you may need to flip
+        #self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
+        self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a SKYBOX texture and you may need to flip
         self.ground = Entity(model='plane', collider='box', scale=128, texture='grass_tintable', texture_scale=(8,8))
         return
     
@@ -45,17 +45,8 @@ class Game(Entity):
     def loading(self):
         print("LOADING"); self.state = "loading"
         #if not self.loaded:
-        #    self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
-        #    wall = Entity(model='cube', collider="box", origin=(-0.5, -0.5, 0), scale=(8,8,2), position=(-64,0,64), texture="textures/stonewall/stonewall.png", texture_scale=(1, 1, 2))
-        #    for i in range(15):
-        #        w = duplicate(wall)
-        #        w.x = -56 + i*8
-        #        w.z = 64
-        #    tree = Entity(model='models/tree/tree.gltf', position=(0,8,5), scale=0.5);
-        #    hut = Entity(model='models/hut/hut.gltf', position=(0,0.1,20), scale=(2));
-        #    hut.collider = BoxCollider(hut, center=(0,0,0), size=(6,10,8)) 
-        #    self.loaded = True
-            #use duplicate(original_entity) to make more as opposed to loading the entity again
+            #self.music = Audio("sounds/sinister.mp3", loop = True, autoplay = False, volume = 0.2, parent=self)
+            #wall = Entity(model='cube', collider="box", origin=(-0.5, -0.5, 0), scale=(8,8,2), position=(-64,0,64), texture="textures/stonewall/stonewall.png", texture_scale=(1, 1, 2))
         invoke(self.start_game, delay=2) 
         return
     
