@@ -29,8 +29,8 @@ class Game(Entity):
 
         self.sun = DirectionalLight()
         self.sun.look_at(Vec3(1,-1,-1))
-        self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
-        #self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a SKYBOX texture and you may need to flip
+        #self.sky = Sky(texture='sky_default') #self.sky = Sky(texture='sky_sunset')
+        self.sky = Sky(texture='textures/skies/snowmountains/snowmountains.jpg') #to get a sky background, you need to download a SKYBOX texture and you may need to flip
         self.ground = Entity(model='plane', collider='box', scale=128, texture='grass_tintable', texture_scale=(8,8))
         
         self.spawntime = 2 #number of seconds to spawn enemy
