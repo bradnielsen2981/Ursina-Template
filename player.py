@@ -39,14 +39,15 @@ class Player(FirstPersonController):
         if key == 'left mouse down':
             snowball_direction = camera.forward + Vec3(0,0.2,0) #makes it above the vector
             snowball_position = self.position + self.forward + Vec3(0,2,0)
-            try:
-                hit_info = raycast(camera.world_position, camera.forward, distance=100, ignore=(GLOBALS.PLAYER, GLOBALS.GAME.ground), debug=False) #if there is a camera target
-                if hit_info.hit:
-                    if hit_info.entity.name == "enemy":
-                        snowball_direction = ((hit_info.entity).position + Vec3(0,2,0) - self.position).normalized() #find the difference vector between the player and enemy (DIRECTION)
-                snowball = Snowball(position=snowball_position, speed=15, direction=snowball_direction)
-            except:
-                pass #there is a change the hit info will return an object that no longer exists
+            snowball = Snowball(position=snowball_position, speed=15, direction=snowball_direction)
+            #try:
+            #    hit_info = raycast(camera.world_position, camera.forward, distance=100, ignore=(GLOBALS.PLAYER, GLOBALS.GAME.ground), debug=False) #if there is a camera target
+            #    if hit_info.hit:
+            #        if hit_info.entity.name == "enemy":
+            #            snowball_direction = ((hit_info.entity).position + Vec3(0,2,0) - self.position).normalized() #find the difference vector between the player and enemy (DIRECTION)
+            #    snowball = Snowball(position=snowball_position, speed=15, direction=snowball_direction)
+            #except:
+                #pass #there is a change the hit info will return an object that no longer exists
         super().input(key) #The player controller needs input
         return
 
